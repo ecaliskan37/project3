@@ -9,10 +9,10 @@ export default defineConfig({
       '/api': {
         target: 'https://zenquotes.io/api/random',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
-        configure: (proxy, options) => {
-          // proxy will be an instance of 'http-proxy'
-        },
+        // rewrite: (path) => path.replace(/^\/api/, ''),
+        // configure: (proxy, options) => {
+        //   // proxy will be an instance of 'http-proxy'
+        // },
       },
     },
   },
