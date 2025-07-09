@@ -1,0 +1,13 @@
+* {
+  background-color: yellow;
+  margin: auto;
+}
+
+.box {
+  background-color: white;
+  color: black;
+  width: 300px;
+  border: 5px solid black;
+  padding: 50px;
+  margin: 20px;
+}
