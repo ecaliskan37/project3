@@ -13,12 +13,19 @@ const DataShow = () => {
 
   const getData = async () => {
     try {
-      const result = await axios
-        .get('https://zenquotes.io/api/random')
-        .then((item) => {
-          console.log(item.data)
-          setList(item.data)
-        })
+      axios('https://zenquotes.io/api/random', {
+        method: 'GET',
+        mode: 'no-cors',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Content-Type': 'application/json',
+        },
+        withCredentials: true,
+        credentials: 'same-origin',
+      }).then((item) => {
+        console.log(item.data)
+        setList(item.data)
+      })
     } catch (error) {
       // Hata yakalama
       if (error.response) {
@@ -34,6 +41,13 @@ const DataShow = () => {
     } finally {
     }
   }
+
+  //   const result = await axios
+  //     .get('api')
+  //     .then((item) => {
+
+  //     })
+  // }
 
   console.log(list)
 
