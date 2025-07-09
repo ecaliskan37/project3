@@ -13,10 +13,12 @@ const DataShow = () => {
 
   const getData = async () => {
     try {
-      const result = await axios.get('api').then((item) => {
-        console.log(item.data)
-        setList(item.data)
-      })
+      const result = await axios
+        .get('https://zenquotes.io/api/random')
+        .then((item) => {
+          console.log(item.data)
+          setList(item.data)
+        })
     } catch (error) {
       // Hata yakalama
       if (error.response) {
