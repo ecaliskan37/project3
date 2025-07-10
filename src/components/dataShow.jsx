@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import { MdOutlineSignalWifiStatusbarConnectedNoInternet4 } from 'react-icons/md'
 
 const DataShow = () => {
   const [list, setList] = useState([])
-  const [button, setButton] = useState(false)
+  const [button, setButton] = useState(0)
 
   useEffect(() => {
     if (button) {
@@ -12,43 +13,11 @@ const DataShow = () => {
   }, [button])
 
   const getData = async () => {
-    try {
-      axios('https://zenquotes.io/api/random', {
-        method: 'GET',
-        mode: 'no-cors',
-        headers: {
-          'Access-Control-Allow-Origin': '*',
-          'Content-Type': 'application/json',
-        },
-        withCredentials: true,
-        credentials: 'same-origin',
-      }).then((item) => {
-        console.log(item.data)
-        setList(item.data)
-      })
-    } catch (error) {
-      // Hata yakalama
-      if (error.response) {
-        // Sunucu tarafından döndürülen hata
-        console.error('HTTP Hatası:', error.response.status)
-      } else if (error.request) {
-        // İstek gönderme hatası
-        console.error('İstek Hatası:', error.request)
-      } else {
-        // Diğer hatalar
-        console.error('Hata:', error.message)
-      }
-    } finally {
-    }
+    const result = await axios.get('api')
+    const data = await result.data
+    console.log(data)
+    setList(data)
   }
-
-  //   const result = await axios
-  //     .get('api')
-  //     .then((item) => {
-
-  //     })
-  // }
-
   console.log(list)
 
   return (
@@ -56,7 +25,7 @@ const DataShow = () => {
       <button
         style={{ backgroundColor: 'lightgrey' }}
         onClick={() => {
-          setButton(!button)
+          setButton((x) => x + 1)
         }}
       >
         New Quote
